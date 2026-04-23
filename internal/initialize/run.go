@@ -4,6 +4,11 @@ func Run() {
 	InitConfig()
 	InitLogger()
 	InitRedis()
-	InitRouter()
 	// InitPostgreSQL()
+
+	
+	//Init router
+	r := InitRouter()
+	r.Run(":8002")
+
 }

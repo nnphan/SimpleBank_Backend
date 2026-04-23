@@ -11,8 +11,7 @@ database:
   user: admin
   password: nnphan2126
   sslmode: disable
+  max_idle_conns: 10 #// Số lượng kết nối tối đa có thể được giữ trong pool khi không sử dụng
+  max_open_conns: 100 #// Số lượng kết nối tối đa có thể được mở đồng thời
+  conn_max_lifetime: 3600 #// Thời gian tối đa mà một kết nối có thể tồn tại trước khi bị đóng và thay thế bằng một kết nối mới
 
-security:
-  jwt:
-    secret: 123456
-  salt: 123456
