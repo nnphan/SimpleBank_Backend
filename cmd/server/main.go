@@ -21,10 +21,8 @@ func main() {
         log.Fatal("cannot load config:", err)
     }
 
-    }
-
-    ctx := context.Background()
-    connPool, err := pgxpool.New(ctx, cfg.DB_URL)
+    c := context.Background()
+    connPool, err := pgxpool.New(c, cfg.DB_URL)
 
     if err != nil {
         log.Fatal("cannot connect to DB: ", err)
@@ -32,7 +30,7 @@ func main() {
 
     
 // ✅ Check connection to DB
-    if err := connPool.Ping(ctx); err != nil {
+    if err := connPool.Ping(c); err != nil {
         log.Fatal("cannot connect to DB: ", err)
     }
 
