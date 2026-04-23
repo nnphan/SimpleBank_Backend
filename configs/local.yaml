@@ -1,19 +1,18 @@
-
-app:
+server:
   name: SimpleBank
   env: local
   port: 8002
 
 database:
   driver: postgres
-  url: postgres://admin:nnphan2126@localhost:5432/Simple_Bank?sslmode=disable
+  host: localhost
+  port: 5432
+  name: Simple_Bank
+  user: admin
+  password: nnphan2126
+  sslmode: disable
 
-
-# database:
-#   driver: postgres
-#   host: localhost
-#   port: 5432
-#   name: Simple_Bank
-#   user: admin
-#   password: nnphan2126
-#   sslmode: disable
+security:
+  jwt:
+    secret: 123456
+  salt: 123456
