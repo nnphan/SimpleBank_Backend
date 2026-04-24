@@ -1,3 +1,10 @@
 package initialize
 
-func InitLogger() {}
+import (
+	"simplebank/global"
+	"simplebank/pkg/logger"
+)
+
+func InitLogger() {
+	global.Logger = logger.NewLogger(global.Config.Logger)
+}

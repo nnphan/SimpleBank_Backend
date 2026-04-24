@@ -9,14 +9,20 @@ import (
 
 func InitConfig() {
 	viper := viper.New()
+
+	// for run debug
+	//viper.AddConfigPath("../../configs")
+	
+	// for run from cmd/server
 	viper.AddConfigPath("./configs")
+
 	viper.SetConfigName("local")
 	viper.SetConfigType("yaml")
 
 	//Read config file
 	err := viper.ReadInConfig()
 	if err != nil {
-		panic("cannot read config file: " + err.Error())
+ 		panic("cannot read config file: " + err.Error())
 	}
 
 	//read value from config file

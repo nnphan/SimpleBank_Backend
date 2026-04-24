@@ -1,9 +1,16 @@
 package global
 
-import "simplebank/pkg/setting"
+import (
+	"simplebank/pkg/logger"
+	"simplebank/pkg/setting"
+
+	"gorm.io/gorm"
+)
 
 var (
 	Config setting.Config
+	Logger *logger.LoggerZap
+	Mdb *gorm.DB
 )
 
 /*
