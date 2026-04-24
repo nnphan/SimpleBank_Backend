@@ -17,8 +17,8 @@ func (ur *UserRouter) InitUserRouter(router *gin.RouterGroup) {
 	//Private router
 	userRouterPrivate := router.Group("/user")
 	{
-		userRouterPrivate.GET("/profile")
-		userRouterPrivate.PUT("/update-profile")
+		userRouterPrivate.GET("/profile2")
+		userRouterPrivate.PUT("/update-profile2")
 	}
 
 }

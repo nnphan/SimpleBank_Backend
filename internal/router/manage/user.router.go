@@ -10,9 +10,9 @@ func (ur *UserRouter) InitUserRouter(router *gin.RouterGroup) {
 	//Private router
 	userRouterPrivate := router.Group("/user")
 	{
-		userRouterPrivate.GET("/profile")
-		userRouterPrivate.PUT("/update-profile")
-		userRouterPrivate.POST("/active-user")
+		userRouterPrivate.GET("/profile1")
+		userRouterPrivate.PUT("/update-profile1")
+		userRouterPrivate.POST("/active-user1")
 	}
 
 }
