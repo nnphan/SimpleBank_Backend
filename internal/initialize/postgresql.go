@@ -5,6 +5,7 @@ import (
 	"simplebank/global"
 	"simplebank/internal/util"
 	"time"
+
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -20,7 +21,7 @@ func InitPostgreSQL()  {
 	}
 	util.CheckPaniceError(err, "cannot connect to DB: ")
 	global.Logger.Info("Successfully connected to PostgreSQL database")
-	global.Mdb = db
+	global.Pdb = db
 
 	// Set connection pool settings
 	SetPool()
@@ -28,7 +29,7 @@ func InitPostgreSQL()  {
 
 func SetPool() {
 	p := global.Config.Postgresql
-	sqlDB, err := global.Mdb.DB()
+	sqlDB, err := global.Pdb.DB()
 	if err != nil {
 		log.Fatal("cannot get sql.DB from gorm.DB: ", err)
 	}

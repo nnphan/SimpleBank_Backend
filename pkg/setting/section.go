@@ -3,6 +3,14 @@ package setting
 type Config struct {
 	Postgresql PostgreSQLSettings `mapstructure:"postgresql"`
 	Logger     LoggerSettings     `mapstructure:"logger"`
+	Redis RedisSettings `mapstructure:"redis"`
+}
+
+type RedisSettings struct {
+	Host     string `mapstructure:"host"`
+	Port	 int    `mapstructure:"port"`
+	Password string `mapstructure:"password"`
+	DB       int    `mapstructure:"db"`
 }
 
 type PostgreSQLSettings struct {
