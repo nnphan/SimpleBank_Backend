@@ -1,27 +1,16 @@
 package repository
 
-import (
-	"context"
-	db "simplebank/internal/db/sqlc"
-
-	"github.com/google/uuid"
-)
-
-type UserRepository struct{q *db.Queries}
-
-func NewUserUserRepository() *UserRepository {
-	return &UserRepository{ q: &db.Queries{} }
+type IUserRepository interface {
+	GetUserByEmail(email string) bool
 }
 
-func (ur *UserRepository) GetUserInfo() string {
-	return "Phan"
+type userRepository struct {
 }
 
-func (ur *UserRepository) CreateUser(ctx context.Context, fullName, email, passwordHash string) (db.User, error) {
-	return ur.q.CreateUser(ctx, db.CreateUserParams{
-		ID: uuid.New(),
-		FullName: fullName,
-		Email: email,
-		PasswordHash: passwordHash,
-	})
+func (*userRepository) GetUserByEmail(email string) bool {
+	return true
+}
+
+func NewUserRepository() IUserRepository {
+	return &userRepository{}
 }

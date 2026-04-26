@@ -1,16 +1,30 @@
 package user
 
-import "github.com/gin-gonic/gin"
+import (
+	"simplebank/internal/wire"
+
+	"github.com/gin-gonic/gin"
+)
 
 type UserRouter struct {
 }
 
-func (ur *UserRouter) InitUserRouter(router *gin.RouterGroup) {
+func (r *UserRouter) InitUserRouter(router *gin.RouterGroup) {
+
+	// non dependency
+	// ur := repository.NewUserRepository()
+	// us := service.NewUserService(ur)
+	// userHandler := controller.NewUserController(us)
+
+	// use DI
+	userController, _ := wire.InitUserRouterHandler()
+	
+
 
 	//Public router
 	userRouterPublic := router.Group("/user")
 	{
-		userRouterPublic.POST("/register")
+		userRouterPublic.POST("/register", userController.Register)
 		userRouterPublic.POST("/login")
 	}
 

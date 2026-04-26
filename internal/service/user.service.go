@@ -1,50 +1,32 @@
 package service
 
 import (
-	"context"
-	db "simplebank/internal/db/sqlc"
 	"simplebank/internal/repository"
-
-	"golang.org/x/crypto/bcrypt"
+	"simplebank/response"
 )
 
-type UserService struct {
-	userRepository *repository.UserRepository
+type IUserService interface {
+	Register(fullName, email, password string) int
 }
 
-func NewUserService() *UserService {
-	return &UserService{
-		userRepository: repository.NewUserUserRepository(),
+type userService struct {
+	userRepo repository.IUserRepository
+	//...
+}
+
+
+func NewUserService(
+	userRepo repository.IUserRepository,
+) IUserService {
+	return &userService{
+		userRepo: userRepo,
 	}
 }
 
-func (us *UserService) GetUserInfo() string {
-	return us.userRepository.GetUserInfo()
+// Register implements IUserService.
+func (us *userService) Register(fullName string, email string, password string) int {
+	if us.userRepo.GetUserByEmail(email) {
+		return response.StatusUserHasExist
+	}
+	return response.StatusOK
 }
-
-func (us *UserService) CreateUser(ctx context.Context, fullName, email, password string) (db.User, error) {
- 	user, err := us.userRepository.CreateUser(
-		ctx,
-		fullName,
-		email,
-		hashPassword(password),
-	)
-	return user, err
-}
-
-func hashPassword(password string) string {
-	if len(password) < 6 {
-        return ""
-    }
-    hash, err := bcrypt.GenerateFromPassword(
-        []byte(password),
-        bcrypt.DefaultCost, // cost = 10 (recommended)
-    )
-    if err != nil {
-        return ""
-    }
-    return string(hash)
-}
-
-
-
