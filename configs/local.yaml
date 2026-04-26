@@ -2,12 +2,13 @@ server:
   name: SimpleBank
   env: local
   port: 8002
+  mode: dev
 
-database:
+postgresql:
   driver: postgres
   host: localhost
   port: 5432
-  name: Simple_Bank
+  dbname: Simple_Bank
   user: admin
   password: nnphan2126
   sslmode: disable
