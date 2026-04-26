@@ -11,8 +11,8 @@ func Run() {
 	InitLogger()
 	global.Logger.Info("Logger initialized successfully", zap.String("ok", "success"))
 	InitRedis()
-	// InitPostgreSQL()
-
+	InitPostgreSQL()
+	global.Logger.Info("InitPostgreSQL successfully", zap.String("ok", "success"))
 	//Init router
 	r := InitRouter()
 	r.Run(":8002")
