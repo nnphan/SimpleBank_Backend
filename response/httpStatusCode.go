@@ -9,6 +9,7 @@ const (
 	StatusNotFound            = 404
 	StatusInternalServerError = 500
 	StatusInvalidToken        = 40101
+	StatusUserHasExist        = 50001 // User has already registered
 )
 
 // Message for http status code
@@ -21,4 +22,5 @@ var msg = map[int]string{
 	StatusNotFound:            "Not Found",
 	StatusInternalServerError: "Internal Server Error",
 	StatusInvalidToken:        "Invalid Token",
+	StatusUserHasExist:        "User has already registered",
 }
